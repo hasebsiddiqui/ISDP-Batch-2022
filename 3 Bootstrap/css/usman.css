@@ -1,0 +1,15 @@
+h1 {
+  background-color: blue;
+}
+
+.alert-primary {
+  color: white;
+}
+
+.alert-border {
+  border: 3px dashed black;
+}
+
+.nav-item {
+  padding-left: 1px;
+}
