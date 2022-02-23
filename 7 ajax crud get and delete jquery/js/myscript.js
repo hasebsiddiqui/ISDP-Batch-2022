@@ -32,7 +32,7 @@ function getRequestData(response) {
   console.log(response);
   for (var i = 0; i < response.length; i++) {
     $("#receipediv").append(
-      `<div class = "receipe"><h3>${response[i].title}<button class="btn btn-danger deletebutton" data-id=${response[i]._id}>Delete</button></h3><p>${response[i].body}</p></div>`
+      `<div class = "receipe"><h3>${response[i].title}<button class="btn btn-danger deletebutton float-right" data-id=${response[i]._id}>Delete</button></h3><p>${response[i].body}</p></div>`
       // "<div class = receipe><h3>" +float-right
       //   response[i].title +
       //   "</h3><p>" +
