@@ -9,13 +9,22 @@ function simulatePromise(flavour) {
   });
 }
 
-simulatePromise("mango")
-  .then(function (data) {
-    console.log(data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+//promises
+//Pending
+//Resolve
+//Reject
+
+console.log(
+  simulatePromise("fajita")
+    .then(function (data) {
+      console.log("Resolve");
+      console.log(data);
+    })
+    .catch(function (error) {
+      console.log("Reject");
+      console.log(error);
+    })
+);
 
 //CRUD 4 operations
 //Create sucess error;
