@@ -53,6 +53,7 @@ const deleteOne = (id) => {
 };
 
 // getAll();
+put("62220b3564ebb66c99387594", { name: "new abc" });
 // post({ name: "hasewewb", age: 18, gender: true, city: "lahore" });
 // put("621f218c5cf997157dc53456", {
 //   name: "hasewewb",

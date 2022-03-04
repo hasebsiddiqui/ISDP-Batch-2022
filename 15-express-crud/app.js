@@ -28,12 +28,15 @@ app.post("/api/products", function (req, res) {
 //Put data
 app.put("/api/products/:id", function (req, res) {
   var data = req.body;
-  var productToEdit = products[req.params.id];
+  console.log(data);
+  products[req.params.id] = data.name;
+  res.send(data.name);
+  // var productToEdit = products[req.params.id];
 
-  productToEdit = data.name;
+  // productToEdit = data.name;
 
-  products[req.params.id] = productToEdit;
-  res.send(productToEdit);
+  // products[req.params.id] = productToEdit;
+  // res.send(productToEdit);
   //   res.send("Product created");
 });
 //Delete data
