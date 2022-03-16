@@ -1,15 +1,15 @@
 var express = require("express");
 var router = express.Router();
-const { Products } = require("../../models/Product");
-const { validateProduct } = require("../../models/Product");
+const Product = require("../../models/Product");
+// const { validateProduct } = require("../../models/Product");
 router.get("/", async function (req, res) {
   try {
-    console.log(req.query);
+    // console.log(req.query);
     let page = Number(req.query.page);
     let perPage = Number(req.query.perPage);
 
     page = (page - 1) * perPage;
-    console.log(page, perPage);
+    // console.log(page, perPage);
 
     let result = await Product.find(req.body).skip(page).limit(perPage);
 
@@ -34,11 +34,6 @@ router.get("/:id", async function (req, res) {
 });
 router.post("/", async function (req, res) {
   try {
-    let { error } = validateProduct(req.body);
-    if (error) {
-      res.status(400).send(error.message);
-    }
-
     let result = new Product();
     result.name = req.body.name;
     result.price = req.body.price;
