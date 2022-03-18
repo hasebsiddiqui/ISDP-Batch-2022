@@ -13,47 +13,47 @@ router.get("/", async function (req, res) {
 
     let result = await Product.find(req.body).skip(page).limit(perPage);
 
-    res.send(result);
+    return res.send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
+    return res.status(400).send(err.message);
   }
 });
 router.get("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
-      res.status(400).send("Product with given ID not found");
+      return res.status(400).send("Product with given ID not found");
     }
-    res.send(result);
+    return res.send(result);
   } catch (err) {
     console.log(err);
-    // res.status(400).send(err.message);
-    res.status(400).send("The format of id is not correct");
+    // return res.status(400).send(err.message);
+    return res.status(400).send("The format of id is not correct");
   }
 });
 router.post("/", async function (req, res) {
   try {
     let { error } = validateProduct(req.body);
     if (error) {
-      res.status(400).send(error.message);
+      return res.status(400).send(error.message);
     }
 
     let result = new Product();
     result.name = req.body.name;
     result.price = req.body.price;
     result = await result.save();
-    res.send(error);
+    return res.send(error);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
+    return res.status(400).send(err.message);
   }
 });
 router.put("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
-      res.status(400).send("The record with given id was not found");
+      return res.status(400).send("The record with given id was not found");
     }
 
     //Another way to do this
@@ -66,24 +66,24 @@ router.put("/:id", async function (req, res) {
     result = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    res.send(result);
+    return res.send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
+    return res.status(400).send(err.message);
   }
 });
 router.delete("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
-      res.status(400).send("record with given ID not found");
+      return res.status(400).send("record with given ID not found");
     }
     result = await Product.findByIdAndDelete(req.params.id);
-    res.send(result);
+    return res.send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
-    // res.status(400).send("The format of id is not correct");
+    return res.status(400).send(err.message);
+    // return res.status(400).send("The format of id is not correct");
   }
 });
 // router.delete("/deletePage", async function (req, res) {
@@ -96,11 +96,11 @@ router.delete("/:id", async function (req, res) {
 //       await data.delete();
 //     })
 //
-//     res.send(result);
+//     return res.send(result);
 //   } catch (err) {
 //     console.log(err);
-//     res.status(400).send(err.message);
-//     // res.status(400).send("The format of id is not correct");
+//     return res.status(400).send(err.message);
+//     // return res.status(400).send("The format of id is not correct");
 //   }
 // });
 

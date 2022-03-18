@@ -14,7 +14,7 @@ router.get("/signup", async (req, res) => {
     result = _.pick(result, ["name", "email", "role", "_id"]);
     res.send(result);
   } catch (err) {
-    res.status(401).send(err.message);
+    return res.status(401).send(err.message);
   }
 });
 router.get("/signin", async (req, res) => {
@@ -24,12 +24,12 @@ router.get("/signin", async (req, res) => {
 
     let result = await User.findOne({ email: email });
     if (!result) {
-      res.status(404).send("User with given email was not found");
+      return res.status(404).send("User with given email was not found");
     }
 
     let isValid = await bcrypt.compare(password, result.password);
     if (!isValid) {
-      res.status(404).send("Invalid Password");
+      return res.status(404).send("Invalid Password");
     }
 
     result = _.pick(result, ["name", "email", "role", "_id"]);
@@ -37,7 +37,7 @@ router.get("/signin", async (req, res) => {
 
     res.send(result);
   } catch (err) {
-    res.status(401).send(err.message);
+    return res.status(401).send(err.message);
   }
 });
 

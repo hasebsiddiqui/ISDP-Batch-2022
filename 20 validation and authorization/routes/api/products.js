@@ -16,20 +16,20 @@ router.get("/", async function (req, res) {
     res.send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
+    return res.status(400).send(err.message);
   }
 });
 router.get("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
-      res.status(400).send("Product with given ID not found");
+      return res.status(400).send("Product with given ID not found");
     }
     res.send(result);
   } catch (err) {
     console.log(err);
-    // res.status(400).send(err.message);
-    res.status(400).send("The format of id is not correct");
+    // return res.status(400).send(err.message);
+    return res.status(400).send("The format of id is not correct");
   }
 });
 router.post("/", async function (req, res) {
@@ -41,14 +41,14 @@ router.post("/", async function (req, res) {
     res.send(error);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
+    return res.status(400).send(err.message);
   }
 });
 router.put("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
-      res.status(400).send("The record with given id was not found");
+      return res.status(400).send("The record with given id was not found");
     }
 
     //Another way to do this
@@ -64,21 +64,21 @@ router.put("/:id", async function (req, res) {
     res.send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
+    return res.status(400).send(err.message);
   }
 });
 router.delete("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
-      res.status(400).send("record with given ID not found");
+      return res.status(400).send("record with given ID not found");
     }
     result = await Product.findByIdAndDelete(req.params.id);
     res.send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send(err.message);
-    // res.status(400).send("The format of id is not correct");
+    return res.status(400).send(err.message);
+    // return res.status(400).send("The format of id is not correct");
   }
 });
 // router.delete("/deletePage", async function (req, res) {
@@ -94,8 +94,8 @@ router.delete("/:id", async function (req, res) {
 //     res.send(result);
 //   } catch (err) {
 //     console.log(err);
-//     res.status(400).send(err.message);
-//     // res.status(400).send("The format of id is not correct");
+//     return res.status(400).send(err.message);
+//     // return res.status(400).send("The format of id is not correct");
 //   }
 // });
 

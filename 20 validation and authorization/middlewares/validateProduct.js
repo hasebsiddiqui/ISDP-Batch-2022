@@ -4,7 +4,7 @@ module.exports = function (req, res, next) {
   let { error } = Product.validateProduct(req.body);
   if (error) {
     console.log(error);
-    res.status(401).send(error.message);
+    return res.send(401).send(error.message);
   }
   next();
 };
