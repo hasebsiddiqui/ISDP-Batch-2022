@@ -38,7 +38,7 @@ router.post("/", async function (req, res) {
     result.name = req.body.name;
     result.price = req.body.price;
     result = await result.save();
-    res.send(error);
+    res.send(result);
   } catch (err) {
     console.log(err);
     return res.status(400).send(err.message);
