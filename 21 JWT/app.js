@@ -12,16 +12,19 @@ var userRouter = require("./routes/api/user");
 var validateProduct = require("./middlewares/validateProduct");
 
 var app = express();
-var cors = require("cors");
-var corsOptions = {
-  origin: "*",
+const cors = require("cors");
 
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-};
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.use(cors());
+// var cors = require("cors");
+// var corsOptions = {
+//   origin: "*",
+
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+// };
+// app.use(cors(corsOptions));
+// app.options("*", cors(corsOptions));
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
