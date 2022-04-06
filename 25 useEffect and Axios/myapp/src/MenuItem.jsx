@@ -6,6 +6,8 @@ const MenuItem = (props) => {
   const useStyles = makeStyles((theme) => ({
     menuItem: {
       paddingRight: "1rem",
+      color:"white",
+      textDecoration: "none"
     },
   }));
   const classes = useStyles();
