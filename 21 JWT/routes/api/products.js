@@ -34,7 +34,7 @@ router.get("/:id", async function (req, res) {
     return res.status(400).send("The format of id is not correct");
   }
 });
-router.post("/", auth, isadmin, async function (req, res) {
+router.post("/", async function (req, res) {
   try {
     let result = new Product();
     result.name = req.body.name;

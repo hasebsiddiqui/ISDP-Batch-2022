@@ -6,6 +6,7 @@ import ContactUS from "./ContactUs";
 import Login from "./Login";
 import { Redirect } from "react-router-dom";
 import NotFound from "./NotFound";
+import AddProduct from "./AddProduct";
 function App() {
   return (
     <Router>
@@ -13,7 +14,8 @@ function App() {
         <MenuItem />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/products" component={Products} />
+          <Route path="/products" exact component={Products} />
+          <Route path="/products/add" component={AddProduct} />
           <Route path="/contact-us" component={ContactUS} />
           <Route path="/login" component={Login} />
           <Route path="/not-found" component={NotFound} />

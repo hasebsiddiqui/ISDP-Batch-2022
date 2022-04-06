@@ -1,62 +1,70 @@
 import React, { useState, useEffect } from "react";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import SingleProduct from "./SingleProduct";
 import axios from "axios";
-import { Backdrop, CircularProgress, makeStyles, Snackbar } from "@material-ui/core";
+import {
+  Backdrop,
+  CircularProgress,
+  Fab,
+  Grid,
+  makeStyles,
+} from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 const Products = (props) => {
+  const useStyles = makeStyles((theme) => ({
+    addBtn: {
+      position: "fixed",
+      bottom: theme.spacing(1),
+      right: theme.spacing(1),
+    },
+  }));
+  const classes = useStyles();
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
   console.log("Component rendered");
   useEffect(() => {
     axios
-      .get("http://localhost:8080/apppi/products")
+      .get("http://localhost:8080/api/products")
       .then((res) => {
         setProducts(res.data);
         // console.log(res.data);
       })
       .catch((err) => {
-        <Snackbar>sdddddddddddddss</Snackbar>
-        // <Alert severity="error">This is an error message!</Alert>
         // setError(true);
         console.log(err);
-      }).finally(()=>{
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, []);
-  const useStyles = makeStyles((theme) => ({
-    // root: {
-    //   backgroundColor: theme.palette.background.paper,
-    //   width: 500,
-    //   position: 'relative',
-    //   minHeight: 200,
-    // },
-    fab: {
-      position: 'fixed',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-
-  }));
-  const classes = useStyles();
   return (
     <div>
-      <Fab color="primary" aria-label="add" className={classes.fab}>
+      <Fab
+        color="primary"
+        aria-label="add"
+        className={classes.addBtn}
+        onClick={() => {
+          props.history.push("/products/add");
+          console.log("Add product");
+        }}
+      >
         <AddIcon />
       </Fab>
+      <h1>All products</h1>
+
       <Backdrop className={classes.backdrop} open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <h1>Products</h1>
 
-
-      <div>
+      <Grid container spacing={3}>
         {products.map((product, index) => {
-          return <SingleProduct key={index} product={product} />;
+          return (
+            <Grid item xs={3}>
+              <SingleProduct key={index} product={product} />;
+            </Grid>
+          );
         })}
-      </div>
-
+      </Grid>
     </div>
   );
 };

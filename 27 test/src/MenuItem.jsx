@@ -6,8 +6,8 @@ const MenuItem = (props) => {
   const useStyles = makeStyles((theme) => ({
     menuItem: {
       paddingRight: "1rem",
-      color:"white",
-      textDecoration: "none"
+      color: "white",
+      textDecoration: "none",
     },
   }));
   const classes = useStyles();
@@ -29,6 +29,9 @@ const MenuItem = (props) => {
           </Link>
           <Link to="/not-found" className={classes.menuItem}>
             <Typography variant="h6">Not Found</Typography>
+          </Link>
+          <Link to="/products/add" className={classes.menuItem}>
+            <Typography variant="h6">Add New Product</Typography>
           </Link>
           {/* <Typography variant="h6">News</Typography> */}
         </Toolbar>

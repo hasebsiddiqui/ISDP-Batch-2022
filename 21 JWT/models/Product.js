@@ -8,7 +8,7 @@ var schema = mongoose.Schema({
 });
 schema.statics.validateProduct = (data) => {
   const joischema = Joi.object({
-    name: Joi.string().min(3).max(10),
+    name: Joi.string().min(3).max(100),
     price: Joi.number().min(0),
   });
   return joischema.validate(data, { abortEarly: false });
