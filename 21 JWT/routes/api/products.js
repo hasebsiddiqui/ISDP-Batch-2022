@@ -46,7 +46,7 @@ router.post("/", async function (req, res) {
     return res.status(400).send(err.message);
   }
 });
-router.put("/:id", auth, isadmin, async function (req, res) {
+router.put("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
@@ -69,7 +69,7 @@ router.put("/:id", auth, isadmin, async function (req, res) {
     return res.status(400).send(err.message);
   }
 });
-router.delete("/:id", auth, isadmin, async function (req, res) {
+router.delete("/:id", async function (req, res) {
   try {
     let result = await Product.findById(req.params.id);
     if (!result) {
