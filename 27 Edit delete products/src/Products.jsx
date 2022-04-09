@@ -60,12 +60,8 @@ const Products = (props) => {
       <Grid container spacing={3}>
         {products.map((product, index) => {
           return (
-            <Grid item xs={3}>
-              <SingleProduct
-                key={index}
-                product={product}
-                onDelete={getProducts}
-              />
+            <Grid item xs={3} key={index}>
+              <SingleProduct product={product} onDelete={getProducts} />
             </Grid>
           );
         })}
