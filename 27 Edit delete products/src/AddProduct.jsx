@@ -11,7 +11,7 @@ const AddProduct = (props) => {
     productService
       .createProduct({ name, price })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         props.history.push("/products");
       })
       .catch((err) => {
