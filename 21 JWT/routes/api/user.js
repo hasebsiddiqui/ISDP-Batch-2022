@@ -5,8 +5,12 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 var jwt = require("jsonwebtoken");
 const _ = require("lodash");
-router.get("/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
+      return res.status(400).send("User with this email already exists");
+    }
     let result = new User();
     result.email = req.body.email;
     result.name = req.body.name;
@@ -18,8 +22,9 @@ router.get("/signup", async (req, res) => {
     return res.status(401).send(err.message);
   }
 });
-router.get("/signin", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
+    console.log("HERE");
     // let result = new User();
     let { email, password } = req.body;
     let result = await User.findOne({ email: email });
@@ -34,7 +39,10 @@ router.get("/signin", async (req, res) => {
 
     //JWT
     let privateKey = config.get("jwtprivatekey");
-    let token = jwt.sign({ _id: result._id, name: result.name }, privateKey);
+    let token = jwt.sign(
+      { _id: result._id, name: result.name, role: result.role },
+      privateKey
+    );
     // result = _.pick(result, ["name", "email", "role", "_id"]);
     // console.log(await _.omit(result, ["password"]));
 
