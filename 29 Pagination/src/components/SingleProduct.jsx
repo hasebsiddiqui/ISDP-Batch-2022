@@ -41,7 +41,11 @@ const SingleProduct = (props) => {
           </Button>
         </>
       ) : (
-        <></>
+        <>
+          <Button variant="contained" color="primary">
+            Add To Cart
+          </Button>
+        </>
       )}
 
       <hr />
